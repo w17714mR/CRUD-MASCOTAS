@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.ControladorMascota;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import modelo.Mascota;
 
@@ -119,7 +120,16 @@ public class AlmacenarMascota extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("TIPO:");
 
-        spnEdadMascota.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
+        txtNombreMascota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreMascotaKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreMascotaKeyPressed(evt);
+            }
+        });
+
+        spnEdadMascota.setModel(new javax.swing.SpinnerNumberModel(1, 1, 150, 1));
         spnEdadMascota.setBounds(1,20,0,1);
 
         cbbTipoMascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "GATO", "PERRO" }));
@@ -153,6 +163,12 @@ public class AlmacenarMascota extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("NOMBRE:");
+
+        txtNombreDuenio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreDuenioKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -324,7 +340,11 @@ public class AlmacenarMascota extends javax.swing.JFrame {
             if (this.txtNombreMascota.getText().equals("")) {
                 JOptionPane.showMessageDialog(rootPane, "ERROR: CAMPO NOMBRE MASCOTA NO PUEDE ESTAR EN BLANCO");
                 break;
+            
+            } else if (this.txtNombreMascota.getText().length()>50){
+                JOptionPane.showMessageDialog(rootPane, "ERROR: CAMPO NOMBRE MASCOTA EXCEDE EL MÁXIMO PERMITIDO (50)");
             }
+            
             if (this.cbbTipoMascota.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "ERROR: DEBE SELECCIONAR UN TIPO DE MASCOTA");
                 break;
@@ -343,7 +363,8 @@ public class AlmacenarMascota extends javax.swing.JFrame {
                 if (this.txtNombreDuenio.getText().equals("")) {
                     JOptionPane.showMessageDialog(rootPane, "ERROR: DEBE INGRESAR UN NOMBRE DE DUENO");
                     break;
-                }
+                } else if (this.txtNombreDuenio.getText().length()>50){
+                JOptionPane.showMessageDialog(rootPane, "ERROR: CAMPO NOMBRE DUEÑO EXCEDE EL MÁXIMO PERMITIDO (50)");}
                 if (this.txtTelDueno.getText().equals("")) {
 
                     JOptionPane.showMessageDialog(rootPane, "ERROR: DEBE INGRESAR UN NÚMERO DE TELÉFONO");
@@ -419,6 +440,25 @@ public class AlmacenarMascota extends javax.swing.JFrame {
         this.dispose();
         MantenedorMascota mm = new MantenedorMascota();
     }//GEN-LAST:event_btnMantenedor1ActionPerformed
+
+    private void txtNombreMascotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMascotaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreMascotaKeyPressed
+
+    private void txtNombreMascotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMascotaKeyTyped
+        char c=evt.getKeyChar();
+
+    if(!(Character.isAlphabetic(c) || c==KeyEvent.VK_DELETE ))
+          evt.consume();
+    
+    }//GEN-LAST:event_txtNombreMascotaKeyTyped
+
+    private void txtNombreDuenioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDuenioKeyTyped
+               char c=evt.getKeyChar();
+
+    if(!(Character.isAlphabetic(c) || c==KeyEvent.VK_DELETE ))
+          evt.consume();
+    }//GEN-LAST:event_txtNombreDuenioKeyTyped
 
     /**
      * @param args the command line arguments

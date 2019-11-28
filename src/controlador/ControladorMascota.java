@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import modelo.Mascota;
 
 public class ControladorMascota {
+    
+    Conexion conexion = new Conexion();
 
-    public void MascotaAlmacenar(Mascota mascota) {
-
-        Conexion conexion = new Conexion();
+    public void MascotaAlmacenar(Mascota mascota) throws Exception {
 
         try {
 
@@ -27,7 +27,7 @@ public class ControladorMascota {
                     + "'" + mascota.getDescriMascota() + "', "
                     + "'" + mascota.getEdadMascota() + "', "
                     + "'" + mascota.getTipoMascota() + "', "
-                    + "'" + mascota.getTelefono()+"');";
+                    + "'" + mascota.getTelefono() + "');";
 
             System.out.println("CONSULTA: " + consulta);
             stmt.executeUpdate(consulta);
@@ -35,13 +35,13 @@ public class ControladorMascota {
 
         } catch (Exception err) {
             System.out.println(err.getMessage());
+            throw err;
 
         }
     }
 
     public ArrayList<Mascota> MascotaListar(String texto) {
         ArrayList<Mascota> listarMascota = new ArrayList<>();
-        Conexion conexion = new Conexion();
 
         try {
 
@@ -73,7 +73,6 @@ public class ControladorMascota {
 
     public ArrayList<Mascota> TipoListar(String texto) {
         ArrayList<Mascota> listarMascota = new ArrayList<>();
-        Conexion conexion = new Conexion();
 
         try {
 
@@ -99,23 +98,38 @@ public class ControladorMascota {
 
         } catch (Exception err) {
             System.out.println(err.getMessage());
+            
             return listarMascota;
+            
+            
         }
     }
 
-    public void MascotaEliminar (int idMascota) throws Exception{
-        Conexion conexion = new Conexion();
+    public void MascotaEliminar(int idMascota) throws Exception {
+
         try {
             Connection conn = conexion.getConnection();
             Statement stmt = conn.createStatement();
-            String consulta = "DELETE FROM MASCOTA WHERE ID_MASCOTA = "+idMascota+";";
-            System.out.println("CONSULTA");
+            String consulta = "DELETE FROM MASCOTA WHERE ID_MASCOTA = " + idMascota + ";";
+            System.out.println("CONSULTA "+consulta);
             stmt.executeUpdate(consulta);
             System.out.println("CONSULTA OK");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
         }
+
+    }
+    
+    public void MascotaModificar(String texto) {
+
+        try {
+            Connection conn = conexion.getConnection();
+            Statement stmt = conn.createStatement();
+            //String 
+            
+        } catch (Exception e) {
+        }
         
-}
+    }
 }

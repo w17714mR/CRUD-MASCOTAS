@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.ControladorMascota;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -107,6 +108,12 @@ public class MantenedorMascota extends javax.swing.JFrame {
         lblEtiqueta.setForeground(new java.awt.Color(0, 0, 0));
         lblEtiqueta.setText("NOMBRE:");
         jPanel2.add(lblEtiqueta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, 20));
+
+        txtNombreMascota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreMascotaKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNombreMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 340, 20));
 
         cbbTipoMascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "GATO", "PERRO" }));
@@ -313,6 +320,13 @@ public class MantenedorMascota extends javax.swing.JFrame {
         this.dispose();
         MantenedorMascota mm = new MantenedorMascota();
     }//GEN-LAST:event_btnMantenedor1ActionPerformed
+
+    private void txtNombreMascotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMascotaKeyTyped
+              char c=evt.getKeyChar();
+
+    if(!(Character.isAlphabetic(c) || c==KeyEvent.VK_DELETE ))
+          evt.consume();
+    }//GEN-LAST:event_txtNombreMascotaKeyTyped
 
     /**
      * @param args the command line arguments
