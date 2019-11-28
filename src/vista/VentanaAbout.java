@@ -81,7 +81,7 @@ public class VentanaAbout extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         jPanel2.setBackground(new java.awt.Color(112, 178, 156));
-        jPanel2.setLayout(new java.awt.GridLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel5.setBackground(new java.awt.Color(112, 178, 156));
 
@@ -150,7 +150,7 @@ public class VentanaAbout extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("WIlliam Rehel Design © 2019");
+        jLabel1.setText("W17714mR Design © 2019");
         jPanel3.add(jLabel1);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);

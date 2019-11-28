@@ -148,7 +148,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="WIlliam Rehel Design &#xa9; 2019"/>
+            <Property name="text" type="java.lang.String" value="W17714mR Design &#xa9; 2019"/>
           </Properties>
         </Component>
       </SubComponents>

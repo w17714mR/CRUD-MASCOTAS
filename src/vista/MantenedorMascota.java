@@ -218,7 +218,7 @@ public class MantenedorMascota extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("WIlliam Rehel Design © 2019");
+        jLabel1.setText("W17714mR Design © 2019");
         jPanel3.add(jLabel1);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);

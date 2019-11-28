@@ -27,7 +27,7 @@ public class ControladorMascota {
                     + "'" + mascota.getDescriMascota() + "', "
                     + "'" + mascota.getEdadMascota() + "', "
                     + "'" + mascota.getTipoMascota() + "', "
-                    + "" + mascota.getTelefono()+");";
+                    + "'" + mascota.getTelefono()+"');";
 
             System.out.println("CONSULTA: " + consulta);
             stmt.executeUpdate(consulta);
