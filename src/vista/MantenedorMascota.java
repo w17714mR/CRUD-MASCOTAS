@@ -9,6 +9,7 @@ import controlador.ControladorMascota;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Mascota;
 
@@ -256,6 +257,7 @@ public class MantenedorMascota extends javax.swing.JFrame {
              int pivote = (int)tblMascotas.getValueAt(fila, columna);
         try {
             cm.MascotaEliminar(pivote);
+            JOptionPane.showMessageDialog(rootPane, "OBJETO ELIMINADO CON ÉXITO.");
         } catch (Exception ex) {
             Logger.getLogger(MantenedorMascota.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -271,6 +273,7 @@ public class MantenedorMascota extends javax.swing.JFrame {
         if (ckbBuscNombre.isSelected()) {
             listaMascotas = cm.MascotaListar(this.txtNombreMascota.getText());
         } else {
+            if (this.cbbTipoMascota.getSelectedItem().equals("Seleccione...")){JOptionPane.showMessageDialog(rootPane, "ERROR: SELECCIONE UN TIPO");}
             listaMascotas = cm.TipoListar((String) this.cbbTipoMascota.getSelectedItem());            
         }
         DefaultTableModel dtm =  (DefaultTableModel) tblMascotas.getModel();
