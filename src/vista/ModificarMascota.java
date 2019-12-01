@@ -7,8 +7,6 @@ package vista;
 
 import controlador.ControladorMascota;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Mascota;
 
@@ -16,21 +14,23 @@ import modelo.Mascota;
  *
  * @author william
  */
-public class AlmacenarMascota extends javax.swing.JFrame {
+public class ModificarMascota extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
-    public AlmacenarMascota() {
+    public ModificarMascota(Mascota mascota) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.spnCantAten.setVisible(false);
-        this.jLabel5.setVisible(false);
-        txtNombreDuenio.setEditable(false);
-        txtTelDueno.setEditable(false);
-        txtNombreDuenio.setOpaque(false);
-        txtTelDueno.setOpaque(false);
+        this.spnEdadMascota.setValue(mascota.getCantAtPrev());
+        this.txtNombreMascota.setText(mascota.getNomMascota());
+        this.cbbTipoMascota.setSelectedItem(mascota.getTipoMascota());
+        this.ckbAtenPrev.setSelected(mascota.isAtPrevia());
+        this.ckbDuenio.setSelected(mascota.isDuenio());
+        this.txtNombreDuenio.setText(mascota.getNomDuenio());
+        this.txtTelDueno.setText(mascota.getTelefono());
+        this.txtDescripcion.setText(mascota.getDescriMascota());
     }
 
     /**
@@ -376,25 +376,20 @@ public class AlmacenarMascota extends javax.swing.JFrame {
             }
             validador = true;
             if (validador){
-                try {
-                    mascota.setNomMascota(this.txtNombreMascota.getText().toUpperCase());
-                    mascota.setEdadMascota((int) this.spnEdadMascota.getValue());
-                    String aux = (String)this.cbbTipoMascota.getSelectedItem();
-                    mascota.setTipoMascota(aux.toUpperCase());
-                    mascota.setAtPrevia(this.ckbAtenPrev.isSelected());
-                    mascota.setCantAtPrev((int)this.spnCantAten.getValue());
-                    mascota.setDescriMascota(this.txtDescripcion.getText().toUpperCase());
-                    mascota.setDuenio(this.ckbDuenio.isSelected());
-                    mascota.setNomDuenio(this.txtNombreDuenio.getText().toUpperCase());
-                    mascota.setTelefono(this.txtTelDueno.getText().toUpperCase());
-                    ControladorMascota cm = new ControladorMascota();
-                    cm.MascotaAlmacenar(mascota);
-                    
-                    JOptionPane.showMessageDialog(rootPane, "OBJETO GUARDADO CON ÉXITO");
-                    this.btnLimpiarActionPerformed(evt);
-                } catch (Exception ex) {
-                    Logger.getLogger(AlmacenarMascota.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                mascota.setNomMascota(this.txtNombreMascota.getText().toUpperCase());
+                mascota.setEdadMascota((int) this.spnEdadMascota.getValue());
+                String aux = (String)this.cbbTipoMascota.getSelectedItem();
+                mascota.setTipoMascota(aux.toUpperCase());
+                mascota.setAtPrevia(this.ckbAtenPrev.isSelected());
+                mascota.setCantAtPrev((int)this.spnCantAten.getValue());
+                mascota.setDescriMascota(this.txtDescripcion.getText().toUpperCase());
+                mascota.setDuenio(this.ckbDuenio.isSelected());
+                mascota.setNomDuenio(this.txtNombreDuenio.getText().toUpperCase());
+                mascota.setTelefono(this.txtTelDueno.getText().toUpperCase());
+                ControladorMascota cm = new ControladorMascota();
+                
+                JOptionPane.showMessageDialog(rootPane, "OBJETO GUARDADO CON ÉXITO");
+                this.btnLimpiarActionPerformed(evt);
                 
                 
            }
@@ -435,7 +430,7 @@ public class AlmacenarMascota extends javax.swing.JFrame {
 
     private void btnAlmacenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlmacenarActionPerformed
         this.dispose();
-        AlmacenarMascota in = new AlmacenarMascota();
+        AlmacenarMascota am = new AlmacenarMascota();
     }//GEN-LAST:event_btnAlmacenarActionPerformed
 
     private void btnAbout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbout1ActionPerformed
@@ -484,14 +479,30 @@ public class AlmacenarMascota extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlmacenarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlmacenarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlmacenarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlmacenarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

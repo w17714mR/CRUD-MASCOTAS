@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import modelo.Mascota;
 
 public class ControladorMascota {
-    
+
     Conexion conexion = new Conexion();
 
     public void MascotaAlmacenar(Mascota mascota) throws Exception {
@@ -98,10 +98,9 @@ public class ControladorMascota {
 
         } catch (Exception err) {
             System.out.println(err.getMessage());
-            
+
             return listarMascota;
-            
-            
+
         }
     }
 
@@ -111,7 +110,7 @@ public class ControladorMascota {
             Connection conn = conexion.getConnection();
             Statement stmt = conn.createStatement();
             String consulta = "DELETE FROM MASCOTA WHERE ID_MASCOTA = " + idMascota + ";";
-            System.out.println("CONSULTA "+consulta);
+            System.out.println("CONSULTA " + consulta);
             stmt.executeUpdate(consulta);
             System.out.println("CONSULTA OK");
         } catch (Exception e) {
@@ -120,16 +119,36 @@ public class ControladorMascota {
         }
 
     }
-    
-    public void MascotaModificar(String texto) {
+
+    public Mascota obtenerMascota(int id) throws Exception {
+        Mascota mascota = new Mascota();
 
         try {
             Connection conn = conexion.getConnection();
             Statement stmt = conn.createStatement();
-            //String 
+            String consulta = "SELECT ID_MASCOTA, NOM_MASCOTA, AT_PREVIA, CANT_AT_PREV, DUENIO, NOM_DUENIO, DESCRI_MASCOTA, EDAD_MASCOTA, TIPO_MASCOTA, TEL_DUENO FROM MASCOTA WHERE "
+                    + "ID_MASCOTA = " + id + ";";
+            System.out.println("CONSULTA: " + consulta);
+            ResultSet rs = stmt.executeQuery(consulta);
+            while (rs.next()) {
             
+            mascota.setIdMascota(id);
+            mascota.setNomMascota(rs.getString("NOM_MASCOTA"));
+            mascota.setAtPrevia(rs.getBoolean("AT_PREVIA"));
+            mascota.setCantAtPrev(rs.getInt("CANT_AT_PREV"));
+            mascota.setDuenio(rs.getBoolean("DUENIO"));
+            mascota.setNomDuenio(rs.getString("NOM_DUENIO"));
+            mascota.setDescriMascota(rs.getString("DESCRI_MASCOTA"));
+            mascota.setEdadMascota(rs.getInt("EDAD_MASCOTA"));
+            mascota.setTipoMascota(rs.getString("TIPO_MASCOTA"));
+            mascota.setTelefono(rs.getString("TEL_DUENO"));
+            
+           }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
         }
-        
+
+        return mascota;
     }
 }

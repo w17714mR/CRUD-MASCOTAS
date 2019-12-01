@@ -58,7 +58,7 @@ public class MantenedorMascota extends javax.swing.JFrame {
         tblMascotas = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         btnInicio = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnInicio1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -192,14 +192,14 @@ public class MantenedorMascota extends javax.swing.JFrame {
         });
         jPanel4.add(btnInicio);
 
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modificar.png"))); // NOI18N
-        btnLimpiar.setText("MODIFICAR");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modificar.png"))); // NOI18N
+        btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
-        jPanel4.add(btnLimpiar);
+        jPanel4.add(btnModificar);
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar.png"))); // NOI18N
         btnEliminar.setText("ELIMINAR");
@@ -253,9 +253,20 @@ public class MantenedorMascota extends javax.swing.JFrame {
         Inicio in = new Inicio();
     }//GEN-LAST:event_btnInicioActionPerformed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        ControladorMascota cm = new ControladorMascota();
+             int fila = tblMascotas.getSelectedRow();
+             int columna = 0;
+             int pivote = (int)tblMascotas.getValueAt(fila, columna);
+        try {
+            Mascota mascota = cm.obtenerMascota(pivote);
+            ModificarMascota mm = new ModificarMascota(mascota);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            
+        }
 
-    }//GEN-LAST:event_btnLimpiarActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
              ControladorMascota cm = new ControladorMascota();
@@ -376,8 +387,8 @@ public class MantenedorMascota extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnInicio1;
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnMantenedor1;
+    private javax.swing.JButton btnModificar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbTipoMascota;
     private javax.swing.JCheckBox ckbBuscNombre;
