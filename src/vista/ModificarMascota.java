@@ -7,6 +7,8 @@ package vista;
 
 import controlador.ControladorMascota;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Mascota;
 
@@ -19,6 +21,8 @@ public class ModificarMascota extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
+    public int id_mascota;
+    
     public ModificarMascota(Mascota mascota) {
         initComponents();
         this.setVisible(true);
@@ -31,6 +35,7 @@ public class ModificarMascota extends javax.swing.JFrame {
         this.txtNombreDuenio.setText(mascota.getNomDuenio());
         this.txtTelDueno.setText(mascota.getTelefono());
         this.txtDescripcion.setText(mascota.getDescriMascota());
+        this.id_mascota = mascota.getIdMascota();
     }
 
     /**
@@ -376,6 +381,7 @@ public class ModificarMascota extends javax.swing.JFrame {
             }
             validador = true;
             if (validador){
+                mascota.setIdMascota(id_mascota);
                 mascota.setNomMascota(this.txtNombreMascota.getText().toUpperCase());
                 mascota.setEdadMascota((int) this.spnEdadMascota.getValue());
                 String aux = (String)this.cbbTipoMascota.getSelectedItem();
@@ -387,10 +393,16 @@ public class ModificarMascota extends javax.swing.JFrame {
                 mascota.setNomDuenio(this.txtNombreDuenio.getText().toUpperCase());
                 mascota.setTelefono(this.txtTelDueno.getText().toUpperCase());
                 ControladorMascota cm = new ControladorMascota();
-                
+                try {
+                    cm.MascotaActualizar(mascota);
+                } catch (Exception ex) {
+                    Logger.getLogger(ModificarMascota.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 JOptionPane.showMessageDialog(rootPane, "OBJETO GUARDADO CON ÉXITO");
+                MantenedorMascota mm = new MantenedorMascota();
+                mm.setVisible(true);
                 this.btnLimpiarActionPerformed(evt);
-                
+                this.dispose();
                 
            }
            

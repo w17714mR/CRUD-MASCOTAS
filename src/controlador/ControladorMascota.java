@@ -131,24 +131,54 @@ public class ControladorMascota {
             System.out.println("CONSULTA: " + consulta);
             ResultSet rs = stmt.executeQuery(consulta);
             while (rs.next()) {
-            
-            mascota.setIdMascota(id);
-            mascota.setNomMascota(rs.getString("NOM_MASCOTA"));
-            mascota.setAtPrevia(rs.getBoolean("AT_PREVIA"));
-            mascota.setCantAtPrev(rs.getInt("CANT_AT_PREV"));
-            mascota.setDuenio(rs.getBoolean("DUENIO"));
-            mascota.setNomDuenio(rs.getString("NOM_DUENIO"));
-            mascota.setDescriMascota(rs.getString("DESCRI_MASCOTA"));
-            mascota.setEdadMascota(rs.getInt("EDAD_MASCOTA"));
-            mascota.setTipoMascota(rs.getString("TIPO_MASCOTA"));
-            mascota.setTelefono(rs.getString("TEL_DUENO"));
-            
-           }
+
+                mascota.setIdMascota(id);
+                mascota.setNomMascota(rs.getString("NOM_MASCOTA"));
+                mascota.setAtPrevia(rs.getBoolean("AT_PREVIA"));
+                mascota.setCantAtPrev(rs.getInt("CANT_AT_PREV"));
+                mascota.setDuenio(rs.getBoolean("DUENIO"));
+                mascota.setNomDuenio(rs.getString("NOM_DUENIO"));
+                mascota.setDescriMascota(rs.getString("DESCRI_MASCOTA"));
+                mascota.setEdadMascota(rs.getInt("EDAD_MASCOTA"));
+                mascota.setTipoMascota(rs.getString("TIPO_MASCOTA"));
+                mascota.setTelefono(rs.getString("TEL_DUENO"));
+
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
         }
 
         return mascota;
+    }
+
+    public void MascotaActualizar(Mascota mascota) throws Exception {
+
+        try {
+
+            Connection conn = conexion.getConnection();
+            Statement stmt = conn.createStatement();
+
+            String consulta = "UPDATE MASCOTA "
+                    + "SET NOM_MASCOTA = '" + mascota.getNomMascota() + "', "
+                    + "EDAD_MASCOTA = " + mascota.getEdadMascota() + " ,"
+                    + " AT_PREVIA = " + mascota.isAtPrevia() + ", "
+                    + " CANT_AT_PREV = " + mascota.getCantAtPrev() + ", "
+                    + " DUENIO = " + mascota.isDuenio() + ", "
+                    + " NOM_DUENIO = '" + mascota.getNomDuenio() + "', "
+                    + " DESCRI_MASCOTA = '" + mascota.getDescriMascota() + "', "
+                    + " EDAD_MASCOTA = " + mascota.getEdadMascota() + ", "
+                    + " TIPO_MASCOTA = '" + mascota.getTipoMascota() + "', "
+                    + " TEL_DUENO = " + mascota.getTelefono() + ""
+                    + " WHERE ID_MASCOTA = "+mascota.getIdMascota()+";";
+            System.out.println("CONSULTA: " + consulta);
+            stmt.executeUpdate(consulta);
+            System.out.println("CONSULTA OK");
+
+        } catch (Exception err) {
+            System.out.println(err.getMessage());
+            throw err;
+
+        }
     }
 }

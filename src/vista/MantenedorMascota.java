@@ -30,7 +30,7 @@ public class MantenedorMascota extends javax.swing.JFrame {
         lblEtiqueta.setText("NOMBRE: ");
         ckbBuscNombre.setSelected(true);
         txtNombreMascota.setVisible(true);
-        DefaultTableModel dtm =  (DefaultTableModel) tblMascotas.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) tblMascotas.getModel();
         dtm.setRowCount(0);
     }
 
@@ -255,48 +255,51 @@ public class MantenedorMascota extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         ControladorMascota cm = new ControladorMascota();
-             int fila = tblMascotas.getSelectedRow();
-             int columna = 0;
-             int pivote = (int)tblMascotas.getValueAt(fila, columna);
+        int fila = tblMascotas.getSelectedRow();
+        int columna = 0;
+        int pivote = (int) tblMascotas.getValueAt(fila, columna);
         try {
             Mascota mascota = cm.obtenerMascota(pivote);
+            this.dispose();
             ModificarMascota mm = new ModificarMascota(mascota);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
-            
+
         }
 
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-             ControladorMascota cm = new ControladorMascota();
-             int fila = tblMascotas.getSelectedRow();
-             int columna = 0;
-             int pivote = (int)tblMascotas.getValueAt(fila, columna);
+        ControladorMascota cm = new ControladorMascota();
+        int fila = tblMascotas.getSelectedRow();
+        int columna = 0;
+        int pivote = (int) tblMascotas.getValueAt(fila, columna);
         try {
             cm.MascotaEliminar(pivote);
             JOptionPane.showMessageDialog(rootPane, "OBJETO ELIMINADO CON ÉXITO.");
         } catch (Exception ex) {
             Logger.getLogger(MantenedorMascota.class.getName()).log(Level.SEVERE, null, ex);
         }
-                            DefaultTableModel dtm =  (DefaultTableModel) tblMascotas.getModel();
-        
+        DefaultTableModel dtm = (DefaultTableModel) tblMascotas.getModel();
+
         dtm.setRowCount(0);
-             
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnInicio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicio1ActionPerformed
-        ArrayList <Mascota> listaMascotas = new ArrayList<>();
+        ArrayList<Mascota> listaMascotas = new ArrayList<>();
         ControladorMascota cm = new ControladorMascota();
         if (ckbBuscNombre.isSelected()) {
             listaMascotas = cm.MascotaListar(this.txtNombreMascota.getText());
         } else {
-            if (this.cbbTipoMascota.getSelectedItem().equals("Seleccione...")){JOptionPane.showMessageDialog(rootPane, "ERROR: SELECCIONE UN TIPO");}
-            listaMascotas = cm.TipoListar((String) this.cbbTipoMascota.getSelectedItem());            
+            if (this.cbbTipoMascota.getSelectedItem().equals("Seleccione...")) {
+                JOptionPane.showMessageDialog(rootPane, "ERROR: SELECCIONE UN TIPO");
+            }
+            listaMascotas = cm.TipoListar((String) this.cbbTipoMascota.getSelectedItem());
         }
-        DefaultTableModel dtm =  (DefaultTableModel) tblMascotas.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) tblMascotas.getModel();
         dtm.setRowCount(0);
-        for (Mascota mascota: listaMascotas ) {
+        for (Mascota mascota : listaMascotas) {
             Object[] fila = {
                 mascota.getIdMascota(),
                 mascota.getNomMascota(),
@@ -306,7 +309,7 @@ public class MantenedorMascota extends javax.swing.JFrame {
             };
             dtm.addRow(fila);
         }
-        
+
     }//GEN-LAST:event_btnInicio1ActionPerformed
 
     private void ckbBuscNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckbBuscNombreActionPerformed
@@ -319,7 +322,7 @@ public class MantenedorMascota extends javax.swing.JFrame {
 
     private void btnAbout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbout1ActionPerformed
         this.dispose();
-        VentanaAbout va = new VentanaAbout();
+        VentanaAbout va  = new VentanaAbout();
     }//GEN-LAST:event_btnAbout1ActionPerformed
 
     private void btnAlmacenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlmacenarActionPerformed
@@ -333,10 +336,10 @@ public class MantenedorMascota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMantenedor1ActionPerformed
 
     private void txtNombreMascotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMascotaKeyTyped
-              char c=evt.getKeyChar();
+        char c = evt.getKeyChar();
 
-    if(!(Character.isAlphabetic(c) || c==KeyEvent.VK_DELETE ))
-          evt.consume();
+        if (!(Character.isAlphabetic(c) || c == KeyEvent.VK_DELETE))
+            evt.consume();
     }//GEN-LAST:event_txtNombreMascotaKeyTyped
 
     /**
