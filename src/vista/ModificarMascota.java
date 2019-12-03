@@ -22,7 +22,7 @@ public class ModificarMascota extends javax.swing.JFrame {
      * Creates new form Inicio
      */
     public int id_mascota;
-    
+
     public ModificarMascota(Mascota mascota) {
         initComponents();
         this.setVisible(true);
@@ -325,7 +325,7 @@ public class ModificarMascota extends javax.swing.JFrame {
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         this.dispose();
-        Inicio in = new Inicio();        
+        Inicio in = new Inicio();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -347,11 +347,11 @@ public class ModificarMascota extends javax.swing.JFrame {
             if (this.txtNombreMascota.getText().equals("")) {
                 JOptionPane.showMessageDialog(rootPane, "ERROR: CAMPO NOMBRE MASCOTA NO PUEDE ESTAR EN BLANCO");
                 break;
-            
-            } else if (this.txtNombreMascota.getText().length()>50){
+
+            } else if (this.txtNombreMascota.getText().length() > 50) {
                 JOptionPane.showMessageDialog(rootPane, "ERROR: CAMPO NOMBRE MASCOTA EXCEDE EL MÁXIMO PERMITIDO (50)");
             }
-            
+
             if (this.cbbTipoMascota.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "ERROR: DEBE SELECCIONAR UN TIPO DE MASCOTA");
                 break;
@@ -370,8 +370,9 @@ public class ModificarMascota extends javax.swing.JFrame {
                 if (this.txtNombreDuenio.getText().equals("")) {
                     JOptionPane.showMessageDialog(rootPane, "ERROR: DEBE INGRESAR UN NOMBRE DE DUENO");
                     break;
-                } else if (this.txtNombreDuenio.getText().length()>50){
-                JOptionPane.showMessageDialog(rootPane, "ERROR: CAMPO NOMBRE DUEÑO EXCEDE EL MÁXIMO PERMITIDO (50)");}
+                } else if (this.txtNombreDuenio.getText().length() > 50) {
+                    JOptionPane.showMessageDialog(rootPane, "ERROR: CAMPO NOMBRE DUEÑO EXCEDE EL MÁXIMO PERMITIDO (50)");
+                }
                 if (this.txtTelDueno.getText().equals("")) {
 
                     JOptionPane.showMessageDialog(rootPane, "ERROR: DEBE INGRESAR UN NÚMERO DE TELÉFONO");
@@ -380,14 +381,14 @@ public class ModificarMascota extends javax.swing.JFrame {
 
             }
             validador = true;
-            if (validador){
+            if (validador) {
                 mascota.setIdMascota(id_mascota);
                 mascota.setNomMascota(this.txtNombreMascota.getText().toUpperCase());
                 mascota.setEdadMascota((int) this.spnEdadMascota.getValue());
-                String aux = (String)this.cbbTipoMascota.getSelectedItem();
+                String aux = (String) this.cbbTipoMascota.getSelectedItem();
                 mascota.setTipoMascota(aux.toUpperCase());
                 mascota.setAtPrevia(this.ckbAtenPrev.isSelected());
-                mascota.setCantAtPrev((int)this.spnCantAten.getValue());
+                mascota.setCantAtPrev((int) this.spnCantAten.getValue());
                 mascota.setDescriMascota(this.txtDescripcion.getText().toUpperCase());
                 mascota.setDuenio(this.ckbDuenio.isSelected());
                 mascota.setNomDuenio(this.txtNombreDuenio.getText().toUpperCase());
@@ -403,9 +404,8 @@ public class ModificarMascota extends javax.swing.JFrame {
                 mm.setVisible(true);
                 this.btnLimpiarActionPerformed(evt);
                 this.dispose();
-                
-           }
-           
+
+            }
 
         }
 
@@ -447,7 +447,7 @@ public class ModificarMascota extends javax.swing.JFrame {
 
     private void btnAbout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbout1ActionPerformed
         this.dispose();
-        VentanaAbout va = new VentanaAbout();
+        VentanaAbout va  = new VentanaAbout();
     }//GEN-LAST:event_btnAbout1ActionPerformed
 
     private void btnMantenedor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenedor1ActionPerformed
@@ -460,18 +460,16 @@ public class ModificarMascota extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreMascotaKeyPressed
 
     private void txtNombreMascotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMascotaKeyTyped
-        char c=evt.getKeyChar();
+        char c = evt.getKeyChar();
+        if (!(Character.isAlphabetic(c) || c == KeyEvent.VK_DELETE || Character.isSpaceChar(c)))
+            evt.consume();
 
-    if(!(Character.isAlphabetic(c) || c==KeyEvent.VK_DELETE ))
-          evt.consume();
-    
     }//GEN-LAST:event_txtNombreMascotaKeyTyped
 
     private void txtNombreDuenioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDuenioKeyTyped
-               char c=evt.getKeyChar();
-
-    if(!(Character.isAlphabetic(c) || c==KeyEvent.VK_DELETE ))
-          evt.consume();
+        char c = evt.getKeyChar();
+        if (!(Character.isAlphabetic(c) || c == KeyEvent.VK_DELETE || Character.isSpaceChar(c)))
+            evt.consume();
     }//GEN-LAST:event_txtNombreDuenioKeyTyped
 
     /**
