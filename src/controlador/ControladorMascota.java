@@ -40,7 +40,8 @@ public class ControladorMascota {
         }
     }
 
-    public ArrayList<Mascota> MascotaListar(String texto) {
+    public ArrayList<Mascota> MascotaListar(String texto) throws Exception {
+
         ArrayList<Mascota> listarMascota = new ArrayList<>();
 
         try {
@@ -67,11 +68,12 @@ public class ControladorMascota {
 
         } catch (Exception err) {
             System.out.println(err.getMessage());
-            return listarMascota;
+            throw err;
+
         }
     }
 
-    public ArrayList<Mascota> TipoListar(String texto) {
+    public ArrayList<Mascota> TipoListar(String texto) throws Exception {
         ArrayList<Mascota> listarMascota = new ArrayList<>();
 
         try {
@@ -98,8 +100,7 @@ public class ControladorMascota {
 
         } catch (Exception err) {
             System.out.println(err.getMessage());
-
-            return listarMascota;
+            throw err;
 
         }
     }
@@ -170,7 +171,7 @@ public class ControladorMascota {
                     + " EDAD_MASCOTA = " + mascota.getEdadMascota() + ", "
                     + " TIPO_MASCOTA = '" + mascota.getTipoMascota() + "', "
                     + " TEL_DUENO = " + mascota.getTelefono() + ""
-                    + " WHERE ID_MASCOTA = "+mascota.getIdMascota()+";";
+                    + " WHERE ID_MASCOTA = " + mascota.getIdMascota() + ";";
             System.out.println("CONSULTA: " + consulta);
             stmt.executeUpdate(consulta);
             System.out.println("CONSULTA OK");

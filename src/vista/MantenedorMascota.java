@@ -290,12 +290,20 @@ public class MantenedorMascota extends javax.swing.JFrame {
         ArrayList<Mascota> listaMascotas = new ArrayList<>();
         ControladorMascota cm = new ControladorMascota();
         if (ckbBuscNombre.isSelected()) {
-            listaMascotas = cm.MascotaListar(this.txtNombreMascota.getText());
-        } else {
-            if (this.cbbTipoMascota.getSelectedItem().equals("Seleccione...")) {
-                JOptionPane.showMessageDialog(rootPane, "ERROR: SELECCIONE UN TIPO");
+            try {
+                listaMascotas = cm.MascotaListar(this.txtNombreMascota.getText());
+            } catch (Exception ex) {
+                Logger.getLogger(MantenedorMascota.class.getName()).log(Level.SEVERE, null, ex);
             }
-            listaMascotas = cm.TipoListar((String) this.cbbTipoMascota.getSelectedItem());
+        } else {
+            try {
+                if (this.cbbTipoMascota.getSelectedItem().equals("Seleccione...")) {
+                    JOptionPane.showMessageDialog(rootPane, "ERROR: SELECCIONE UN TIPO");
+                }
+                listaMascotas = cm.TipoListar((String) this.cbbTipoMascota.getSelectedItem());
+            } catch (Exception ex) {
+                Logger.getLogger(MantenedorMascota.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         DefaultTableModel dtm = (DefaultTableModel) tblMascotas.getModel();
         dtm.setRowCount(0);

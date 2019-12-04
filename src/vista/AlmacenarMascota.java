@@ -460,7 +460,7 @@ public class AlmacenarMascota extends javax.swing.JFrame {
 
     private void txtTelDuenoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelDuenoKeyTyped
         char c = evt.getKeyChar();
-        if (!(Character.isAlphabetic(c) || c == KeyEvent.VK_DELETE || Character.isSpaceChar(c)))
+        if (!(Character.isDigit(c) || c == KeyEvent.VK_DELETE))
             evt.consume();
     }//GEN-LAST:event_txtTelDuenoKeyTyped
 

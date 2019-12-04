@@ -181,6 +181,12 @@ public class ModificarMascota extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("TELÉFONO:");
 
+        txtTelDueno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTelDuenoKeyPressed(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("DESCRIPCIÓN: ");
@@ -471,6 +477,12 @@ public class ModificarMascota extends javax.swing.JFrame {
         if (!(Character.isAlphabetic(c) || c == KeyEvent.VK_DELETE || Character.isSpaceChar(c)))
             evt.consume();
     }//GEN-LAST:event_txtNombreDuenioKeyTyped
+
+    private void txtTelDuenoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelDuenoKeyPressed
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || c == KeyEvent.VK_DELETE))
+            evt.consume();
+    }//GEN-LAST:event_txtTelDuenoKeyPressed
 
     /**
      * @param args the command line arguments
